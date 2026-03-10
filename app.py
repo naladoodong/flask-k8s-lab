@@ -7,4 +7,4 @@ def hello():
     pod_name = os.environ.get('HOSTNAME', 'Unknown-Pod')
     return render_template('index.html', pod_name=pod_name, version="v1.8")
 if __name__ == "__main__":
-app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
