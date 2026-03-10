@@ -22,9 +22,13 @@ jobs:
         docker push m970306/flask-app:\${{ github.sha }}
     - name: Update Manifest and Push
       run: |
-        sed -i "s|image: m970306/flask-app:.*|image: m970306/flask-app:\${{ github.sha }}|g" deployment.yaml
+        SHA=${{ github.sha }}
+
+        sed -i "s|flask-app:.*|flask-app:${SHA}|g" deployment.yaml
+
         git config --global user.email "bot@github.com"
         git config --global user.name "github-actions[bot]"
+
         git add deployment.yaml
-        git commit -m "chore: update image tag to \${{ github.sha }} [skip ci]"
+        git commit -m "chore: update image tag to ${SHA} [skip ci]" || echo "No changes"
         git push
