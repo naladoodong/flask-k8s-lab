@@ -18,11 +18,11 @@ jobs:
     
     - name: Build and Push
       run: |
-        docker build -t 본인계정/flask-app:\${{ github.sha }} .
-        docker push 본인계정/flask-app:\${{ github.sha }}
+        docker build -t m970306/flask-app:\${{ github.sha }} .
+        docker push m970306/flask-app:\${{ github.sha }}
     - name: Update Manifest and Push
       run: |
-        sed -i "s|image: 본인계정/flask-app:.*|image: 본인계정/flask-app:\${{ github.sha }}|g" deployment.yaml
+        sed -i "s|image: m970306/flask-app:.*|image: m970306/flask-app:\${{ github.sha }}|g" deployment.yaml
         git config --global user.email "bot@github.com"
         git config --global user.name "github-actions[bot]"
         git add deployment.yaml
